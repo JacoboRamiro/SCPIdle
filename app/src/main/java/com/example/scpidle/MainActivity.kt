@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import com.example.scpidle.ui.pages.InicioPage
+import com.example.scpidle.ui.pages.PantallaPrincipal
 import com.example.scpidle.ui.theme.SCPIdleTheme
 
 class MainActivity : ComponentActivity() {
@@ -13,7 +13,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             SCPIdleTheme {
-                InicioPage()
+                PantallaPrincipal()
             }
         }
     }
