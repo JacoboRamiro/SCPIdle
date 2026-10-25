@@ -30,7 +30,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.scpidle.data.DatosEjemplo
-import com.example.scpidle.ui.components.FilaSkill
+import com.example.scpidle.ui.components.TarjetaSkill
 import com.example.scpidle.ui.components.FilaVida
 import com.example.scpidle.ui.theme.SCPIdleTheme
 import kotlinx.coroutines.launch
@@ -92,7 +92,9 @@ fun PantallaPrincipal() {
                 .padding(horizontal = 16.dp)
         ) {
             if (seccion == 0) {
-                items(DatosEjemplo.skills) { skill -> FilaSkill(skill) }
+                items(DatosEjemplo.skills) { skill ->
+                    TarjetaSkill(skill, modifier = Modifier.padding(vertical = 4.dp))
+                }
             } else {
                 items(DatosEjemplo.vidas) { vida -> FilaVida(vida) }
             }
