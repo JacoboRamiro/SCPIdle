@@ -1,60 +1,56 @@
 package com.example.scpidle.ui.pages
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.statusBarsPadding
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.example.scpidle.data.DatosEjemplo
-import com.example.scpidle.data.model.Entidad
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.scpidle.R
 import com.example.scpidle.ui.components.SeccionExpediente
-import com.example.scpidle.ui.theme.SCPIdleTheme
+import com.example.scpidle.ui.viewmodels.ExpedienteViewModel
 
-// Página de detalle: sin Scaffold, sin menú lateral y sin navegación
+// Página de detalle: sin Scaffold propio, sin menú lateral y sin navegación.
+// Los datos vienen del estado de su ViewModel.
 @Composable
-fun ExpedientePage(entidad: Entidad, modifier: Modifier = Modifier) {
-    Surface(modifier = modifier.fillMaxSize()) {
-        Column(
-            modifier = Modifier
-                .statusBarsPadding()
-                .verticalScroll(rememberScrollState())
-                .padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp)
-        ) {
-            Text(text = entidad.codigo, style = MaterialTheme.typography.headlineMedium)
+fun ExpedientePage(viewModel: ExpedienteViewModel = viewModel()) {
+    val estado by viewModel.estado.collectAsState()
+
+    LazyColumn(
+        contentPadding = PaddingValues(16.dp),
+        verticalArrangement = Arrangement.spacedBy(12.dp)
+    ) {
+        item {
+            Text(text = estado.codigo, style = MaterialTheme.typography.headlineMedium)
+        }
+        item {
             Text(
-                text = "${entidad.nombre} · Clase ${entidad.clase}",
+                text = stringResource(R.string.expediente_subtitulo, estado.nombre, estado.clase),
                 style = MaterialTheme.typography.titleMedium,
                 color = MaterialTheme.colorScheme.primary
             )
-            SeccionExpediente(titulo = "Procedimientos de contención", texto = entidad.contencion)
-            SeccionExpediente(titulo = "Descripción", texto = entidad.descripcion)
+        }
+        items(estado.secciones) { seccion ->
+            SeccionExpediente(data = seccion)
+        }
+        item {
             Text(
-                text = "Autor original: ${entidad.autor}",
+                text = stringResource(R.string.expediente_autor, estado.autor),
                 style = MaterialTheme.typography.bodySmall
             )
+        }
+        item {
             Text(
-                text = entidad.enlace,
+                text = estado.enlace,
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.primary
             )
         }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun ExpedientePagePreview() {
-    SCPIdleTheme {
-        ExpedientePage(DatosEjemplo.entidad)
     }
 }

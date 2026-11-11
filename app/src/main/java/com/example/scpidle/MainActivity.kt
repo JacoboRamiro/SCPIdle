@@ -6,7 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import com.example.scpidle.ui.pages.PantallaPrincipal
+import com.example.scpidle.ui.ScpIdleApp
 import com.example.scpidle.ui.theme.SCPIdleTheme
 
 class MainActivity : ComponentActivity() {
@@ -18,7 +18,7 @@ class MainActivity : ComponentActivity() {
         )
         setContent {
             SCPIdleTheme {
-                PantallaPrincipal()
+                ScpIdleApp()
             }
         }
     }

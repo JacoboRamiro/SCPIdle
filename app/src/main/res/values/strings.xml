@@ -1,4 +1,24 @@
 <resources>
     <string name="app_name">SCP Idle</string>
-    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_main">SCP Idle</string>
+
+    <!-- Barra superior, barra inferior y botón flotante -->
+    <string name="accion_ajustes">Ajustes</string>
+    <string name="accion_volver">Volver</string>
+    <string name="accion_nueva_vida">Nueva vida</string>
+    <string name="aviso_nueva_vida">Nueva vida empezada</string>
+    <string name="seccion_habilidades">Habilidades</string>
+    <string name="seccion_vidas">Vidas</string>
+
+    <!-- Componentes -->
+    <string name="skill_nivel">Nivel %1$d</string>
+    <string name="skill_experiencia">%1$d / %2$d xp</string>
+    <string name="vida_titulo">Vida %1$d · %2$s</string>
+    <string name="vida_turnos">%1$d turnos</string>
+
+    <!-- Expediente -->
+    <string name="expediente_subtitulo">%1$s · Clase %2$s</string>
+    <string name="expediente_contencion">Procedimientos de contención</string>
+    <string name="expediente_descripcion">Descripción</string>
+    <string name="expediente_autor">Autor original: %1$s</string>
 </resources>
